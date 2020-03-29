@@ -1,13 +1,48 @@
 <template>
   <div id="app">
-    <div id="nav">
+    <nav v-if="!!anonymous" id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
-    </div>
+    </nav>
+    <main-head v-else @onLogout="onLogout" />
     <router-view />
+    <footer v-if="!anonymous">
+      <main-nav />
+    </footer>
   </div>
 </template>
+<script>
+import Firebase from "firebase";
+import MainHead from "@/components/layout/MainHead.vue";
+import MainNav from "@/components/layout/MainNav.vue";
 
+export default {
+  components: {
+    MainHead,
+    MainNav
+  },
+  data: function() {
+    return {
+      anonymous: true
+    };
+  },
+  methods: {
+    onLogout: function() {
+      Firebase.auth()
+        .signOut()
+        .then(() => {
+          this.$router.replace({ name: "Home" });
+        });
+    }
+  },
+  mounted: function() {
+    this.anonymous = !Firebase.auth().currentUser;
+    Firebase.auth().onAuthStateChanged(user => {
+      this.anonymous = !user;
+    });
+  }
+};
+</script>
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Red+Hat+Display&display=swap");
 #app {

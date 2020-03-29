@@ -1,7 +1,9 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
-import Garden from "../views/Garden.vue";
+import Home from "@/views/Home.vue";
+import Garden from "@/views/Garden.vue";
+import Calendar from "@/views/Calendar.vue";
+import Settings from "@/views/Settings.vue";
 import Firebase from "firebase";
 
 Vue.use(VueRouter);
@@ -31,6 +33,16 @@ const routes = [
     path: "/garden",
     name: "Garden",
     component: Garden
+  },
+  {
+    path: "/calendar",
+    name: "Calendar",
+    component: Calendar
+  },
+  {
+    path: "/settings",
+    name: "Settings",
+    component: Settings
   }
 ];
 
