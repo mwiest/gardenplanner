@@ -18,6 +18,8 @@ if (process.env.NODE_ENV === "production") {
     },
     updatefound() {
       console.log("New content is downloading.");
+      // new update available
+      setTimeout(() => document.location.reload(true), 1000);
     },
     updated() {
       console.log("New content is available; please refresh.");
