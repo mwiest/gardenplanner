@@ -24,6 +24,7 @@
       <b-form-input
         v-model="loginForm.password"
         type="password"
+        autocomplete="current-password"
         :state="passwordState"
       ></b-form-input>
     </b-form-group>
