@@ -3,8 +3,8 @@
     <div class="plantentry__container" @click="expanded = !expanded">
       <img class="plantentry__img" :src="plant.imgUrl" alt="" />
       <div class="plantentry__name">
-        <h4>{{ plant.name }}</h4>
-        <small>{{ plant.latin }}</small>
+        <h4>{{ plant.displayName }}</h4>
+        <small>{{ plant.sciName }}</small>
       </div>
       <b-icon-chevron-down v-show="expanded" class="plantentry__arrow" />
       <b-icon-chevron-right v-show="!expanded" class="plantentry__arrow" />

@@ -22,8 +22,9 @@ export default {
       plants: [
         {
           plantId: "JHSDKAHDSJS-08098",
-          name: "Hazel",
-          latin: "Corylus",
+          displayName: "Hazel",
+          synonyms: [],
+          sciName: "Corylus",
           imgUrl:
             "https://firebasestorage.googleapis.com/v0/b/gardenplanner-cdd8b.appspot.com/o/plants%2FJHSDKAHDSJS-08098.jpg?alt=media&token=5da530d3-b47f-4533-bcec-8a69e379ef7c",
           description:
@@ -49,8 +50,9 @@ export default {
         },
         {
           plantId: "OIEUIEJJHDSJS-08094",
-          name: "Monk's Pepper",
-          latin: "Vitex agnus-castus",
+          displayName: "Monk's Pepper",
+          synonyms: [],
+          sciName: "Vitex agnus-castus",
           imgUrl:
             "https://firebasestorage.googleapis.com/v0/b/gardenplanner-cdd8b.appspot.com/o/plants%2FOIEUIEJJHDSJS-08094.jpg?alt=media&token=25a81e88-a110-42af-abc9-148238b5bf9e",
           description:
