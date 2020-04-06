@@ -5,7 +5,9 @@
       <router-link to="/about">About</router-link>
     </nav>
     <main-head v-else @onLogout="onLogout" />
-    <router-view />
+    <div id="content">
+      <router-view />
+    </div>
     <footer v-if="!anonymous">
       <main-nav />
     </footer>
@@ -52,7 +54,12 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
-
+#content {
+  margin-bottom: 60px;
+  h2 {
+    margin-top: 0.75em;
+  }
+}
 #nav {
   padding: 30px;
 

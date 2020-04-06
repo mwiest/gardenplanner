@@ -35,6 +35,7 @@ export default {
 <style lang="scss">
 .mainnav {
   border-top: 1px solid #aaa;
+  background: white;
   position: fixed;
   bottom: 0;
   width: 100%;
