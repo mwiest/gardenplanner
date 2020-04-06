@@ -4,6 +4,7 @@ import Home from "@/views/Home.vue";
 import Garden from "@/views/Garden.vue";
 import Calendar from "@/views/Calendar.vue";
 import Settings from "@/views/Settings.vue";
+import PlantEdit from "@/views/PlantEdit.vue";
 import Firebase from "firebase";
 
 Vue.use(VueRouter);
@@ -43,6 +44,11 @@ const routes = [
     path: "/settings",
     name: "Settings",
     component: Settings
+  },
+  {
+    path: "/add",
+    name: "PlantEdit",
+    component: PlantEdit
   }
 ];
 
