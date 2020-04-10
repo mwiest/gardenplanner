@@ -75,6 +75,9 @@ export default {
         )
         .then(() => {
           alert("Account created");
+          Firebase.auth().currentUser.updateProfile({
+            displayName: registerForm.name
+          });
           this.$router.replace({ name: "Garden" });
         })
         .catch(err => {

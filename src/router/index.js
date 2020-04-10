@@ -46,7 +46,12 @@ const routes = [
     component: Settings
   },
   {
-    path: "/add",
+    path: "/plants/add",
+    name: "PlantAdd",
+    component: PlantEdit
+  },
+  {
+    path: "/plants/:plantId",
     name: "PlantEdit",
     component: PlantEdit
   }

@@ -1,5 +1,6 @@
 <template>
   <div class="garden">
+    <h2>Hi, {{ userName }}</h2>
     <ul class="list-unstyled">
       <plant-list-entry
         v-for="plant in plants"
@@ -7,10 +8,12 @@
         :key="plant.plantId"
       />
     </ul>
+    <b-button block pill variant="primary" to="/plants/add">Add</b-button>
   </div>
 </template>
 <script>
 import PlantListEntry from "@/components/garden/PlantListEntry.vue";
+import Firebase from "firebase";
 
 export default {
   name: "Garden",
@@ -60,6 +63,11 @@ export default {
         }
       ]
     };
+  },
+  computed: {
+    userName: function() {
+      return Firebase.auth().currentUser.displayName;
+    }
   }
 };
 </script>

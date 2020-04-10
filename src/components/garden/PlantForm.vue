@@ -84,7 +84,7 @@
         </b-collapse>
       </div>
       <b-button variant="link" @click="addAction">
-        <b-icon-plus varian="success" />
+        <b-icon-plus variant="success" />
         Add
       </b-button>
     </div>
@@ -97,7 +97,7 @@ import {
   BIconPencil,
   BIconTrash,
   BIconCheck,
-  BIconPlus
+  BIconPlus,
 } from "bootstrap-vue";
 import PlantActionForm from "@/components/garden/PlantActionForm.vue";
 
@@ -109,30 +109,30 @@ export default {
     BIconPencil,
     BIconTrash,
     BIconCheck,
-    BIconPlus
+    BIconPlus,
   },
   props: {
-    plant: Object
+    plant: Object,
   },
   data: function() {
     return {
       localPlant: JSON.parse(JSON.stringify(this.plant)),
       validated: false,
       invalidActions: [],
-      synonymStr: this.plant.synonyms.join(", "),
-      activeAction: null
+      synonymStr: this.plant.synonyms ? this.plant.synonyms.join(", ") : "",
+      activeAction: null,
     };
   },
   computed: {
     displayNameState: function() {
-      return !this.plant.displayName && this.validated ? false : null;
+      return !this.localPlant.displayName && this.validated ? false : null;
     },
     sciNameState: function() {
-      return !this.plant.sciName && this.validated ? false : null;
+      return !this.localPlant.sciName && this.validated ? false : null;
     },
     descriptionState: function() {
-      return !this.plant.description && this.validated ? false : null;
-    }
+      return !this.localPlant.description && this.validated ? false : null;
+    },
   },
   methods: {
     onSubmit: function() {
@@ -145,7 +145,7 @@ export default {
       ) {
         console.log("Submit");
         this.activeAction = null;
-        this.$emit("update:plant", this.localPlant);
+        this.$emit("onSubmit", this.localPlant);
       }
     },
     addAction: function() {
@@ -169,12 +169,12 @@ export default {
           v = c == "x" ? r : (r & 0x3) | 0x8;
         return v.toString(16);
       });
-    }
+    },
   },
   watch: {
     synonymStr: function(val) {
-      this.localPlant.synonyms = val.split(",").map(a => a.trim());
-    }
-  }
+      this.localPlant.synonyms = val.split(",").map((a) => a.trim());
+    },
+  },
 };
 </script>
