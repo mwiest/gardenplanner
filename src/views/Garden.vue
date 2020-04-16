@@ -1,14 +1,17 @@
 <template>
   <div class="garden">
-    <h2>Hi, {{ userName }}</h2>
+    <h2>{{ userName }}'s Garden</h2>
     <ul class="list-unstyled">
       <plant-list-entry
         v-for="plant in plants"
         :plant="plant"
         :key="plant.plantId"
+        @remove="onRemove"
       />
     </ul>
-    <b-button block pill variant="primary" to="/plants/add">Add</b-button>
+    <b-container fluid>
+      <b-button block pill variant="primary" to="/plants/search">Add</b-button>
+    </b-container>
   </div>
 </template>
 <script>
@@ -64,10 +67,31 @@ export default {
       ]
     };
   },
+  methods: {
+    onRemove: function(plant) {
+      const userId = Firebase.auth().currentUser.uid;
+      const db = Firebase.database();
+      db.ref("gardens/" + userId)
+        .orderByChild("plantId")
+        .equalTo(plant.plantId)
+        .once("value", snap => {
+          snap.forEach(p => {
+            db.ref("gardens/" + userId + "/" + p.key).remove();
+          });
+        });
+    }
+  },
   computed: {
     userName: function() {
       return Firebase.auth().currentUser.displayName;
     }
+  },
+  mounted: function() {
+    const userId = Firebase.auth().currentUser.uid;
+    const gardenRef = Firebase.database().ref("gardens/" + userId);
+    gardenRef.on("value", gardenSnapshot => {
+      this.plants = gardenSnapshot.val();
+    });
   }
 };
 </script>

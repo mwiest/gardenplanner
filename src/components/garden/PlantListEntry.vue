@@ -1,13 +1,31 @@
 <template>
   <li class="plantentry">
-    <div class="plantentry__container" @click="expanded = !expanded">
-      <img class="plantentry__img" :src="plant.imgUrl" alt="" />
-      <div class="plantentry__name">
+    <div class="plantentry__container">
+      <img
+        class="plantentry__img"
+        :src="imgUrl"
+        alt=""
+        @click="expanded = !expanded"
+      />
+      <div class="plantentry__name" @click="expanded = !expanded">
         <h4>{{ plant.displayName }}</h4>
         <small>{{ plant.sciName }}</small>
       </div>
-      <b-icon-chevron-down v-show="expanded" class="plantentry__arrow" />
-      <b-icon-chevron-right v-show="!expanded" class="plantentry__arrow" />
+      <div v-if="action" class="plantentry__action">
+        <b-button variant="success" @click="$emit('select', plant)">{{
+          action
+        }}</b-button>
+      </div>
+      <b-icon-chevron-down
+        v-show="expanded"
+        class="plantentry__arrow"
+        @click="expanded = !expanded"
+      />
+      <b-icon-chevron-right
+        v-show="!expanded"
+        class="plantentry__arrow"
+        @click="expanded = !expanded"
+      />
     </div>
     <b-collapse v-model="expanded" class="plantentry__details">
       <div class="py-3">{{ plant.description }}</div>
@@ -18,17 +36,21 @@
           :action="action"
         />
       </ul>
-      <div class="plantentry__addaction">
-        <a href="javascript:;">
-          <b-icon-plus class="plantentry__addactionicon" />
-          Add action</a
+      <div v-if="showRemove" class="plantentry__trashaction">
+        <a
+          href="javascript:;"
+          class="text-danger"
+          @click="$emit('remove', plant)"
+        >
+          <b-icon-trash class="plantentry__trashactionicon" />
+          Remove from Garden</a
         >
       </div>
     </b-collapse>
   </li>
 </template>
 <script>
-import { BIconChevronRight, BIconChevronDown, BIconPlus } from "bootstrap-vue";
+import { BIconChevronRight, BIconChevronDown, BIconTrash } from "bootstrap-vue";
 import PlantActionRow from "@/components/garden/PlantActionRow.vue";
 
 export default {
@@ -36,7 +58,7 @@ export default {
   components: {
     BIconChevronRight,
     BIconChevronDown,
-    BIconPlus,
+    BIconTrash,
     PlantActionRow
   },
   data: function() {
@@ -45,7 +67,14 @@ export default {
     };
   },
   props: {
-    plant: Object
+    plant: Object,
+    action: { type: String, required: false },
+    showRemove: { type: Boolean, default: true }
+  },
+  computed: {
+    imgUrl: function() {
+      return this.plant.imgUrl || "https://picsum.photos/75/75";
+    }
   }
 };
 </script>
@@ -76,11 +105,14 @@ export default {
     color: #aaa;
   }
 }
+.plantentry__action {
+  padding: 0 1rem;
+}
 .plantentry__details {
   text-align: left;
   font-size: 13px;
 }
-.plantentry__addactionicon {
+.plantentry__trashactionicon {
   margin-right: 5px;
   font-size: 18px;
 }
