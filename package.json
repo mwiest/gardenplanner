@@ -48,7 +48,12 @@
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "rules": {}
+    "rules": {
+      "vue/component-name-in-template-casing": [
+        "error",
+        "PascalCase"
+      ]
+    }
   },
   "browserslist": [
     "> 1%",

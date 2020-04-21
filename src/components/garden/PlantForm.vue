@@ -53,12 +53,12 @@
         <div
           class="d-flex justify-content-between align-items-center font-weight-bold"
         >
-          <b-icon-calendar class="mr-2" />
-          <span class="flex-grow-1"
-            >{{ action.dateName
-            }}<span v-if="action.dateName && action.name">: </span
-            >{{ action.name }}</span
-          >
+          <BIconCalendar class="mr-2" />
+          <span class="flex-grow-1">
+            {{ action.dateName }}
+            <span v-if="action.dateName && action.name">:</span>
+            {{ action.name }}
+          </span>
           <b-button
             variant="link"
             @click="
@@ -67,25 +67,24 @@
                   ? action.plantActionId
                   : null
             "
-            ><b-icon-pencil
-              v-show="activeAction !== action.plantActionId"/><b-icon-check
-              v-show="activeAction == action.plantActionId"
-          /></b-button>
-          <b-button variant="link" @click="deleteAction(action)"
-            ><b-icon-trash variant="danger"
-          /></b-button>
+          >
+            <BIconPencil v-show="activeAction !== action.plantActionId" />
+            <BIconCheck v-show="activeAction == action.plantActionId" />
+          </b-button>
+          <b-button variant="link" @click="deleteAction(action)">
+            <BIconTrash variant="danger" />
+          </b-button>
         </div>
         <b-collapse :visible="activeAction == action.plantActionId">
-          <plant-action-form
+          <PlantActionForm
             :action="action"
             :validated="validated"
-            :invalidActions="invalidActions"
+            :invalid-actions="invalidActions"
           />
         </b-collapse>
       </div>
       <b-button variant="link" @click="addAction">
-        <b-icon-plus variant="success" />
-        Add
+        <BIconPlus variant="success" />Add Action
       </b-button>
     </div>
     <b-button type="submit" block variant="primary" class="mt-3">Save</b-button>
@@ -97,7 +96,7 @@ import {
   BIconPencil,
   BIconTrash,
   BIconCheck,
-  BIconPlus,
+  BIconPlus
 } from "bootstrap-vue";
 import PlantActionForm from "@/components/garden/PlantActionForm.vue";
 
@@ -109,10 +108,10 @@ export default {
     BIconPencil,
     BIconTrash,
     BIconCheck,
-    BIconPlus,
+    BIconPlus
   },
   props: {
-    plant: Object,
+    plant: Object
   },
   data: function() {
     return {
@@ -120,7 +119,7 @@ export default {
       validated: false,
       invalidActions: [],
       synonymStr: this.plant.synonyms ? this.plant.synonyms.join(", ") : "",
-      activeAction: null,
+      activeAction: null
     };
   },
   computed: {
@@ -132,7 +131,12 @@ export default {
     },
     descriptionState: function() {
       return !this.localPlant.description && this.validated ? false : null;
-    },
+    }
+  },
+  watch: {
+    synonymStr: function(val) {
+      this.localPlant.synonyms = val.split(",").map(a => a.trim());
+    }
   },
   methods: {
     onSubmit: function() {
@@ -169,12 +173,7 @@ export default {
           v = c == "x" ? r : (r & 0x3) | 0x8;
         return v.toString(16);
       });
-    },
-  },
-  watch: {
-    synonymStr: function(val) {
-      this.localPlant.synonyms = val.split(",").map((a) => a.trim());
-    },
-  },
+    }
+  }
 };
 </script>
