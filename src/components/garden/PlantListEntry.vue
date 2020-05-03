@@ -16,12 +16,12 @@
           action
         }}</b-button>
       </div>
-      <b-icon-chevron-down
+      <BIconChevronDown
         v-show="expanded"
         class="plantentry__arrow"
         @click="expanded = !expanded"
       />
-      <b-icon-chevron-right
+      <BIconChevronRight
         v-show="!expanded"
         class="plantentry__arrow"
         @click="expanded = !expanded"
@@ -30,7 +30,7 @@
     <b-collapse v-model="expanded" class="plantentry__details">
       <div class="py-3">{{ plant.description }}</div>
       <ul class="list-unstyled pb-2">
-        <plant-action-row
+        <PlantActionRow
           v-for="action in plant.actions"
           :key="action.actionId"
           :action="action"
@@ -42,7 +42,7 @@
           class="text-danger"
           @click="$emit('remove', plant)"
         >
-          <b-icon-trash class="plantentry__trashactionicon" />
+          <BIconTrash class="plantentry__trashactionicon" />
           Remove from Garden</a
         >
       </div>
@@ -73,7 +73,11 @@ export default {
   },
   computed: {
     imgUrl: function() {
-      return this.plant.imgUrl || "https://picsum.photos/75/75";
+      return (
+        this.plant.thumbUrl ||
+        this.plant.imgUrl ||
+        "https://picsum.photos/75/75"
+      );
     }
   }
 };

@@ -44,6 +44,17 @@
         :state="descriptionState"
       />
     </b-form-group>
+    <b-form-group
+      label="Image"
+      invalid-feedback="Please provide an image upload or camera photo"
+      :state="imageState"
+    >
+      <b-form-file
+        v-model="localPlant.imageFile"
+        accept="image/jpeg"
+        :state="imageState"
+      />
+    </b-form-group>
     <div role="tablist">
       <div
         v-for="action in localPlant.actions"
@@ -131,6 +142,13 @@ export default {
     },
     descriptionState: function() {
       return !this.localPlant.description && this.validated ? false : null;
+    },
+    imageState: function() {
+      return !this.localPlant.imageFile &&
+        !this.localPlant.plantId &&
+        this.validated
+        ? false
+        : null;
     }
   },
   watch: {
@@ -145,6 +163,7 @@ export default {
         this.displayNameState !== false &&
         this.sciNameState !== false &&
         this.descriptionState !== false &&
+        this.imageState !== false &&
         this.invalidActions.length === 0
       ) {
         console.log("Submit");

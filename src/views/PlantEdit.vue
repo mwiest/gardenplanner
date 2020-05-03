@@ -1,12 +1,10 @@
 <template>
   <b-container fluid class="text-left">
     <h2>
-      <a @click="$router.go(-1)" class="backbutton mr-1"
-        ><b-icon-arrow-left
-      /></a>
+      <a @click="$router.go(-1)" class="backbutton mr-1"><BIconArrowLeft /></a>
       Add plant
     </h2>
-    <plant-form :plant="plant" :key="plant.plantId" @onSubmit="onSubmit" />
+    <PlantForm :plant="plant" :key="plant.plantId" @onSubmit="onSubmit" />
   </b-container>
 </template>
 
@@ -42,13 +40,17 @@ export default {
     }
   },
   methods: {
-    onSubmit: function(plantForm) {
+    onSubmit: async function(plantForm) {
       if (plantForm.plantId) {
         // Existing
-        const { plantId, ...plant } = plantForm; // PlantId should not be on the stored document
+        const { plantId, imageFile, ...plant } = plantForm; // PlantId should not be on the stored document
+        const imgRef = Firebase.storage().ref("plants/" + plantId + ".jpg");
+        await imgRef.put(imageFile);
+        const imgUrl = await imgRef.getDownloadURL();
+
         Firebase.database()
           .ref("plants/" + plantId)
-          .set(plant)
+          .update({ imgUrl, ...plant })
           .then(() => {
             this.$root.$bvToast.toast("Plant updated", {
               variant: "success",
@@ -59,11 +61,15 @@ export default {
           });
       } else {
         // New
+        const { imageFile, ...plant } = plantForm; // PlantId should not be on the stored document
         const plantsRef = Firebase.database().ref("plants");
         const newKey = plantsRef.push().key;
+        const imgRef = Firebase.storage().ref("plants/" + newKey + ".jpg");
+        await imgRef.put(imageFile);
+        const imgUrl = await imgRef.getDownloadURL();
         plantsRef
           .child(newKey)
-          .set(plantForm)
+          .update({ imgUrl, ...plant })
           .then(() => {
             this.$root.$bvToast.toast("Plant saved", {
               variant: "success",

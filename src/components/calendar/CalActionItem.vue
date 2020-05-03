@@ -35,7 +35,11 @@ export default {
   },
   computed: {
     imgUrl: function() {
-      return this.plantAction.plant.imgUrl || "https://picsum.photos/75/75";
+      return (
+        this.plantAction.thumbUrl ||
+        this.plantAction.plant.imgUrl ||
+        "https://picsum.photos/75/75"
+      );
     }
   },
   methods: {
