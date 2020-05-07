@@ -166,7 +166,6 @@ export default {
         this.imageState !== false &&
         this.invalidActions.length === 0
       ) {
-        console.log("Submit");
         this.activeAction = null;
         this.$emit("onSubmit", this.localPlant);
       }

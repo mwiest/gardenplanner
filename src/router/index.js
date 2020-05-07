@@ -6,6 +6,7 @@ import Calendar from "@/views/Calendar.vue";
 import Settings from "@/views/Settings.vue";
 import PlantSearch from "@/views/PlantSearch.vue";
 import PlantEdit from "@/views/PlantEdit.vue";
+import Plant from "@/views/Plant.vue";
 import Firebase from "firebase";
 
 Vue.use(VueRouter);
@@ -57,9 +58,14 @@ const routes = [
     component: PlantEdit
   },
   {
-    path: "/plants/:plantId",
+    path: "/plants/:plantId/edit",
     name: "PlantEdit",
     component: PlantEdit
+  },
+  {
+    path: "/plants/:plantId",
+    name: "Plant",
+    component: Plant
   }
 ];
 

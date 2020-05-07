@@ -1,28 +1,47 @@
 <template>
   <li class="plantaction">
-    <b-icon-calendar class="plantaction__icon" />
-    <span class="plantaction__action"
-      >{{ action.dateName }}: {{ action.name }}</span
-    >
-    <b-button variant="link"><b-icon-pencil /></b-button>
+    <div class="plantaction__container">
+      <BIconCalendar class="plantaction__icon" />
+      <span class="plantaction__action"
+        >{{ action.dateName }}: {{ action.name }}</span
+      >
+      <b-button variant="link" @click="expanded = !expanded"
+        ><BIconChevronDown v-show="expanded"/><BIconChevronRight
+          v-show="!expanded"
+      /></b-button>
+    </div>
+    <b-collapse v-model="expanded" class="plantaction__details">
+      <div class="mb-2 text-muted"><b>Triggers: </b>{{ action.date }}</div>
+      <b>Instructions: </b>{{ action.details }}
+    </b-collapse>
   </li>
 </template>
 <script>
-import { BIconCalendar, BIconPencil } from "bootstrap-vue";
+import {
+  BIconCalendar,
+  BIconChevronRight,
+  BIconChevronDown
+} from "bootstrap-vue";
 
 export default {
   name: "PlantActionRow",
   components: {
     BIconCalendar,
-    BIconPencil
+    BIconChevronRight,
+    BIconChevronDown
   },
   props: {
     action: Object
+  },
+  data: function() {
+    return {
+      expanded: false
+    };
   }
 };
 </script>
 <style lang="scss">
-.plantaction {
+.plantaction__container {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -33,5 +52,10 @@ export default {
 }
 .plantaction__action {
   flex-basis: 100%;
+}
+.plantaction__details {
+  margin-bottom: 1rem;
+  padding-left: 22px;
+  font-size: 13px;
 }
 </style>

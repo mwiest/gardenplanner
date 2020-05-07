@@ -1,13 +1,12 @@
 <template>
   <li class="plantentry">
-    <div class="plantentry__container">
-      <img
-        class="plantentry__img"
-        :src="imgUrl"
-        alt=""
-        @click="expanded = !expanded"
-      />
-      <div class="plantentry__name" @click="expanded = !expanded">
+    <b-link
+      :to="'/plants/' + plant.plantId"
+      router-tag="div"
+      class="plantentry__container"
+    >
+      <img class="plantentry__img" :src="imgUrl" alt="" />
+      <div class="plantentry__name">
         <h4>{{ plant.displayName }}</h4>
         <small>{{ plant.sciName }}</small>
       </div>
@@ -16,60 +15,21 @@
           action
         }}</b-button>
       </div>
-      <BIconChevronDown
-        v-show="expanded"
-        class="plantentry__arrow"
-        @click="expanded = !expanded"
-      />
-      <BIconChevronRight
-        v-show="!expanded"
-        class="plantentry__arrow"
-        @click="expanded = !expanded"
-      />
-    </div>
-    <b-collapse v-model="expanded" class="plantentry__details">
-      <div class="py-3">{{ plant.description }}</div>
-      <ul class="list-unstyled pb-2">
-        <PlantActionRow
-          v-for="action in plant.actions"
-          :key="action.actionId"
-          :action="action"
-        />
-      </ul>
-      <div v-if="showRemove" class="plantentry__trashaction">
-        <a
-          href="javascript:;"
-          class="text-danger"
-          @click="$emit('remove', plant)"
-        >
-          <BIconTrash class="plantentry__trashactionicon" />
-          Remove from Garden</a
-        >
-      </div>
-    </b-collapse>
+      <BIconChevronRight class="plantentry__arrow" />
+    </b-link>
   </li>
 </template>
 <script>
-import { BIconChevronRight, BIconChevronDown, BIconTrash } from "bootstrap-vue";
-import PlantActionRow from "@/components/garden/PlantActionRow.vue";
+import { BIconChevronRight } from "bootstrap-vue";
 
 export default {
   name: "PlantListEntry",
   components: {
-    BIconChevronRight,
-    BIconChevronDown,
-    BIconTrash,
-    PlantActionRow
-  },
-  data: function() {
-    return {
-      expanded: false
-    };
+    BIconChevronRight
   },
   props: {
     plant: Object,
-    action: { type: String, required: false },
-    showRemove: { type: Boolean, default: true }
+    action: { type: String, required: false }
   },
   computed: {
     imgUrl: function() {

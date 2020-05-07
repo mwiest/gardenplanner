@@ -2,7 +2,8 @@
   <b-container fluid class="text-left">
     <h2>
       <a @click="$router.go(-1)" class="backbutton mr-1"><BIconArrowLeft /></a>
-      Add plant
+      <span v-if="!plant.plantId">Add plant</span>
+      <span v-if="!!plant.plantId">Edit plant</span>
     </h2>
     <PlantForm :plant="plant" :key="plant.plantId" @onSubmit="onSubmit" />
   </b-container>
@@ -44,10 +45,12 @@ export default {
       if (plantForm.plantId) {
         // Existing
         const { plantId, imageFile, ...plant } = plantForm; // PlantId should not be on the stored document
-        const imgRef = Firebase.storage().ref("plants/" + plantId + ".jpg");
-        await imgRef.put(imageFile);
-        const imgUrl = await imgRef.getDownloadURL();
-
+        let imgUrl = plantForm.imgUrl;
+        if (imageFile) {
+          const imgRef = Firebase.storage().ref("plants/" + plantId + ".jpg");
+          await imgRef.put(imageFile);
+          imgUrl = await imgRef.getDownloadURL();
+        }
         Firebase.database()
           .ref("plants/" + plantId)
           .update({ imgUrl, ...plant })

@@ -59,8 +59,7 @@ export default {
     onLogin: function(loginForm) {
       Firebase.auth()
         .signInWithEmailAndPassword(loginForm.email, loginForm.password)
-        .then(user => {
-          console.log(user);
+        .then(() => {
           this.$router.replace({ name: "Garden" });
         })
         .catch(err => {

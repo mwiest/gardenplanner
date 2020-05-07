@@ -4,12 +4,12 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </nav>
-    <main-head v-else @onLogout="onLogout" />
+    <MainHead v-else @onLogout="onLogout" />
     <div id="content">
       <router-view />
     </div>
     <footer v-if="!anonymous">
-      <main-nav />
+      <MainNav />
     </footer>
   </div>
 </template>
@@ -55,7 +55,7 @@ export default {
   color: #2c3e50;
 }
 #content {
-  margin-bottom: 60px;
+  padding-bottom: 60px;
   h2 {
     margin-top: 0.75em;
   }

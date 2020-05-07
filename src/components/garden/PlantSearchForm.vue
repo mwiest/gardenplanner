@@ -11,17 +11,16 @@
           debounce="500"
         />
         <template v-slot:append>
-          <b-input-group-text><b-icon-search /></b-input-group-text>
+          <b-input-group-text><BIconSearch /></b-input-group-text>
         </template>
       </b-input-group>
     </b-form-group>
     <ul class="list-unstyled">
-      <plant-list-entry
+      <PlantListEntry
         v-for="result in searchResultsFiltered"
         :key="result.plantId"
         :plant="result"
         action="Add"
-        :showRemove="false"
         @select="$emit('select', result)"
       />
     </ul>
