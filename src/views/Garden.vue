@@ -2,7 +2,7 @@
   <div class="garden">
     <h2>{{ userName }}'s Garden</h2>
     <ul class="list-unstyled">
-      <plant-list-entry
+      <PlantListEntry
         v-for="plant in plants"
         :plant="plant"
         :key="plant.plantId"
