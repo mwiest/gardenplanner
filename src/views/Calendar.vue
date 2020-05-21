@@ -1,6 +1,6 @@
 <template>
   <div class="calendar">
-    <ul class="list-unstyled">
+    <ul v-if="activeActions.length" class="list-unstyled">
       <CalActionItem
         v-for="plantAction in activeActions"
         :key="plantAction.plantActionId"
@@ -8,17 +8,33 @@
         @completed="onCompleted"
       />
     </ul>
+    <b-container v-else-if="plantActions.length" fluid class="calempty">
+      <BIconCalendar class="calempty__icon" />
+      <p>Momentan gibt es nichts zu tun, grossartig!</p>
+    </b-container>
+    <b-container v-else fluid class="calempty">
+      <BIconCalendar class="calempty__icon" />
+      <p>
+        Füge zuerst Pflanzen zu deinem Garten hinzu um zu sehen was er zu tun
+        gibt.
+      </p>
+      <b-button pill block variant="primary" to="/plants/search"
+        >Zur Pflanzensuche</b-button
+      >
+    </b-container>
   </div>
 </template>
 
 <script>
 import CalActionItem from "@/components/calendar/CalActionItem.vue";
 import Firebase from "firebase";
+import { BIconCalendar } from "bootstrap-vue";
 
 export default {
   name: "Calendar",
   components: {
-    CalActionItem
+    CalActionItem,
+    BIconCalendar
   },
   data: function() {
     return {
@@ -75,3 +91,12 @@ export default {
   }
 };
 </script>
+<style lang="scss">
+.calempty {
+  color: gray;
+}
+.calempty__icon {
+  font-size: 50vw;
+  opacity: 0.3;
+}
+</style>

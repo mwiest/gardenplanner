@@ -2,10 +2,9 @@
   <div class="home">
     <b-container fluid>
       <img alt="Logo" src="@/assets/logo.png" />
-      <h1>Garden Planner</h1>
+      <h1>Gartenplaner</h1>
       <p class="mb-3">
-        Keep track of the different plants in your garden and the tasks to do
-        for each of them.
+        Bleibe stets informiert über was es in deinem Garten zu tun gibt.
       </p>
       <b-row>
         <b-col
@@ -73,7 +72,7 @@ export default {
           registerForm.password
         )
         .then(() => {
-          alert("Account created");
+          alert("Konto erstellt!");
           Firebase.auth().currentUser.updateProfile({
             displayName: registerForm.name
           });

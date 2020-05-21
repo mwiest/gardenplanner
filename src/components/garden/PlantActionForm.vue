@@ -3,8 +3,8 @@
     <b-row>
       <b-col col>
         <b-form-group
-          label="When"
-          invalid-feedback="Missing descriptive 'when'."
+          label="Wann"
+          invalid-feedback="Wann soll die Aktion denn ungefähr ausgeführt werden?"
           label-size="sm"
           :state="whenState"
         >
@@ -12,15 +12,15 @@
             v-model.trim="action.dateName"
             type="text"
             size="sm"
-            placeholder="Mid-June"
+            placeholder="Mitte Juni"
             :state="whenState"
           />
         </b-form-group>
       </b-col>
       <b-col col>
         <b-form-group
-          label="Starting"
-          invalid-feedback="Invalid reminder date."
+          label="Erinnerung ab"
+          invalid-feedback="Ungültiges Erinnerungsdatum."
           label-size="sm"
           :state="dateState"
         >
@@ -32,7 +32,7 @@
               day: 'numeric'
             }"
             right
-            locale="en"
+            locale="de"
             size="sm"
             :state="dateState"
           ></b-form-datepicker>
@@ -40,8 +40,8 @@
       </b-col>
     </b-row>
     <b-form-group
-      label="Action"
-      invalid-feedback="Please provide a short name of the action."
+      label="Aktion"
+      invalid-feedback="Bitte gib einen kurzen, prägnanten Namen für die Aktion an."
       label-size="sm"
       :state="actionState"
     >
@@ -49,13 +49,13 @@
         v-model.trim="action.name"
         type="text"
         size="sm"
-        placeholder="Harvest"
+        placeholder="Ernten"
         :state="actionState"
       />
     </b-form-group>
     <b-form-group
-      label="Instructions"
-      invalid-feedback="Please give a short description of what to do."
+      label="Vorgehen"
+      invalid-feedback="Bitte gib genau an was zu tun ist, ggf. Probleme und deren Lösung."
       label-size="sm"
       :state="instructionState"
     >
@@ -71,8 +71,6 @@
   </b-form>
 </template>
 <script>
-//import { BIconCalendar, BIconPlus } from "bootstrap-vue";
-
 export default {
   name: "PlantActionForm",
   props: {

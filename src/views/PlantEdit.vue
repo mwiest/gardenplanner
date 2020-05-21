@@ -2,8 +2,8 @@
   <b-container fluid class="text-left">
     <h2>
       <a @click="$router.go(-1)" class="backbutton mr-1"><BIconArrowLeft /></a>
-      <span v-if="!plant.plantId">Add plant</span>
-      <span v-if="!!plant.plantId">Edit plant</span>
+      <span v-if="!plant.plantId">Pflanze erfassen</span>
+      <span v-if="!!plant.plantId">Pflanze bearbeiten</span>
     </h2>
     <PlantForm :plant="plant" :key="plant.plantId" @onSubmit="onSubmit" />
   </b-container>
@@ -55,7 +55,7 @@ export default {
           .ref("plants/" + plantId)
           .update({ imgUrl, ...plant })
           .then(() => {
-            this.$root.$bvToast.toast("Plant updated", {
+            this.$root.$bvToast.toast("Pflanze gespeichert.", {
               variant: "success",
               toaster: "b-toaster-top-center",
               autoHideDelay: 1000
@@ -74,7 +74,7 @@ export default {
           .child(newKey)
           .update({ imgUrl, ...plant })
           .then(() => {
-            this.$root.$bvToast.toast("Plant saved", {
+            this.$root.$bvToast.toast("Pflanze gespeichert.", {
               variant: "success",
               toaster: "b-toaster-top-center",
               autoHideDelay: 1000

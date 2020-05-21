@@ -3,20 +3,20 @@
     <ul class="mainnav__list">
       <li>
         <router-link to="/calendar" class="mainnav__link"
-          ><b-icon-calendar class="mainnav__icon" /><br />
-          Calendar</router-link
+          ><BIconCalendar class="mainnav__icon" /><br />
+          Kalender</router-link
         >
       </li>
       <li>
         <router-link to="/garden" class="mainnav__link"
-          ><b-icon-house class="mainnav__icon" /><br />
-          Garden</router-link
+          ><BIconHouse class="mainnav__icon" /><br />
+          Garten</router-link
         >
       </li>
       <li>
         <router-link to="/settings" class="mainnav__link"
-          ><b-icon-gear class="mainnav__icon" /><br />
-          Settings</router-link
+          ><BIconGear class="mainnav__icon" /><br />
+          Einstellungen</router-link
         >
       </li>
     </ul>

@@ -7,11 +7,11 @@
     >
       <img class="plantentry__img" :src="imgUrl" alt="" />
       <div class="plantentry__name">
-        <h4>{{ plant.displayName }}</h4>
+        <h4 class="plantentry__title">{{ plant.displayName }}</h4>
         <small>{{ plant.sciName }}</small>
       </div>
       <div v-if="action" class="plantentry__action">
-        <b-button variant="success" @click="$emit('select', plant)">{{
+        <b-button variant="success" @click.stop="$emit('select', plant)">{{
           action
         }}</b-button>
       </div>
@@ -33,11 +33,7 @@ export default {
   },
   computed: {
     imgUrl: function() {
-      return (
-        this.plant.thumbUrl ||
-        this.plant.imgUrl ||
-        "https://picsum.photos/75/75"
-      );
+      return this.plant.thumbUrl || this.plant.imgUrl || "/img/placeholder.png";
     }
   }
 };
@@ -65,9 +61,15 @@ export default {
   flex-grow: 1.2;
   text-align: left;
   padding-left: 20px;
+  min-width: 0; /* Let the flex-child shrink */
   small {
     color: #aaa;
   }
+}
+.plantentry__title {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .plantentry__action {
   padding: 0 1rem;

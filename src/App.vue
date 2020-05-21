@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <nav v-if="!!anonymous" id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/">Start</router-link> |
+      <router-link to="/about">Über</router-link>
     </nav>
     <MainHead v-else @onLogout="onLogout" />
     <div id="content">

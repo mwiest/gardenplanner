@@ -11,8 +11,8 @@
       /></b-button>
     </div>
     <b-collapse v-model="expanded" class="plantaction__details">
-      <div class="mb-2 text-muted"><b>Triggers: </b>{{ action.date }}</div>
-      <b>Instructions: </b>{{ action.details }}
+      <div class="mb-2 text-muted"><b>Erinnerung ab: </b>{{ action.date }}</div>
+      <b>Vorgehen: </b>{{ action.details }}
     </b-collapse>
   </li>
 </template>

@@ -2,10 +2,9 @@
   <div class="about">
     <b-container fluid>
       <img alt="Logo" src="../assets/logo.png" />
-      <h1>Garden Planner</h1>
+      <h1>Gartenplaner</h1>
       <p class="mb-3">
-        Keep track of the different plants in your garden and the tasks to do
-        for each of them.
+        Bleibe stets informiert was in deinem Garten zu tun ist.
       </p>
     </b-container>
   </div>

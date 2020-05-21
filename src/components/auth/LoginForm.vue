@@ -4,21 +4,21 @@
       errorMessage
     }}</b-alert>
     <b-form-group
-      label="Email:"
-      invalid-feedback="Please enter your e-mail."
+      label="E-Mail:"
+      invalid-feedback="Bitte gib deine E-Mail-Adresse an."
       :state="emailState"
     >
       <b-form-input
         v-model="loginForm.email"
         type="email"
-        placeholder="john@doe.com"
+        placeholder="max@muster.net"
         :state="emailState"
       ></b-form-input>
     </b-form-group>
 
     <b-form-group
-      label="Password:"
-      invalid-feedback="Please enter your password."
+      label="Passwort:"
+      invalid-feedback="Bitte gib dein Passwort an."
       :state="passwordState"
     >
       <b-form-input

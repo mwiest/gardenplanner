@@ -2,12 +2,7 @@
   <li class="actionitem">
     <div class="actionitem__container">
       <div class="actionitem__check">
-        <b-check
-          v-model="plantAction.completed"
-          size="lg"
-          title="Weirdo fsfsdf"
-          @change="onChange"
-        />
+        <b-check v-model="plantAction.completed" size="lg" @change="onChange" />
       </div>
       <div class="actionitem__text">
         <small>{{ plantAction.dateName }}</small>
@@ -38,7 +33,7 @@ export default {
       return (
         this.plantAction.thumbUrl ||
         this.plantAction.plant.imgUrl ||
-        "https://picsum.photos/75/75"
+        "/img/placeholder.png"
       );
     }
   },

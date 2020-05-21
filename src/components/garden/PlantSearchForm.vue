@@ -1,12 +1,12 @@
 <template>
   <b-form>
-    <b-form-group label="Add plants">
+    <b-form-group label="Pflanzen finden">
       <b-input-group size="lg">
         <b-input
           v-model.trim="searchTerm"
           @update="search"
           type="search"
-          placeholder="Hazel"
+          placeholder="Haselnuss"
           autofocus
           debounce="500"
         />
@@ -20,11 +20,13 @@
         v-for="result in searchResultsFiltered"
         :key="result.plantId"
         :plant="result"
-        action="Add"
+        action="Hinzu"
         @select="$emit('select', result)"
       />
     </ul>
-    <b-button block pill variant="primary" to="/plants/add">New Plant</b-button>
+    <b-button block pill variant="primary" to="/plants/add"
+      >Neue Pflanze erfassen</b-button
+    >
   </b-form>
 </template>
 

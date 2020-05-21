@@ -5,33 +5,33 @@
     }}</b-alert>
     <b-form-group
       label="Name:"
-      invalid-feedback="Please enter your name."
+      invalid-feedback="Bitte gib deinen Namen an."
       :state="nameState"
     >
       <b-form-input
         v-model="registerForm.name"
         type="text"
-        placeholder="John"
+        placeholder="Max"
         :state="nameState"
       ></b-form-input>
     </b-form-group>
 
     <b-form-group
-      label="Email:"
-      invalid-feedback="Please enter your e-mail."
+      label="E-Mail:"
+      invalid-feedback="Bitte gib deine E-Mail-Adresse an."
       :state="emailState"
     >
       <b-form-input
         v-model="registerForm.email"
         type="email"
-        placeholder="john@doe.com"
+        placeholder="max@muster.net"
         :state="emailState"
       ></b-form-input>
     </b-form-group>
 
     <b-form-group
-      label="Password:"
-      invalid-feedback="Please choose a password."
+      label="Passwort:"
+      invalid-feedback="Bitte wähle ein Passwort."
       :state="passwordState"
     >
       <b-form-input
@@ -42,10 +42,10 @@
     </b-form-group>
 
     <b-form-group
-      description="We're not giving your data to anyone. By registering you agree to the terms of service."
+      description="Deine Daten werden ausschliesslich für die Identifikation deines Accounts im Gartenplaner verwendet und niemals an Dritte weitergegeben."
     >
       <b-button block type="submit" variant="primary" class="mt-4"
-        >Sign up</b-button
+        >Registrieren</b-button
       >
     </b-form-group>
   </b-form>

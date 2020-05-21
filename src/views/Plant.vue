@@ -8,7 +8,7 @@
       @click="onAdd"
       class="mb-2"
     >
-      <BIconPlus /> Add to Garden
+      <BIconPlus /> Zum Garten hinzufügen
     </b-button>
     <b-button
       v-show="added"
@@ -17,7 +17,7 @@
       @click="onRemove"
       class="mb-2"
     >
-      <BIconTrash /> Remove from Garden
+      <BIconTrash /> Vom Garten entfernen
     </b-button>
   </b-container>
 </template>
@@ -56,7 +56,9 @@ export default {
       const userId = Firebase.auth().currentUser.uid;
       const gardenRef = Firebase.database().ref("gardens/" + userId);
       const entryRef = gardenRef.push();
-      entryRef.set(this.plant).then(() => {});
+      entryRef.set(this.plant).then(() => {
+        this.$router.push("/garden");
+      });
     },
     onRemove: function() {
       const userId = Firebase.auth().currentUser.uid;
@@ -67,6 +69,7 @@ export default {
             p.ref.remove();
           }
         });
+        this.$router.push("/garden");
       });
     }
   },

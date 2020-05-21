@@ -13,7 +13,7 @@
     </b-button>
 
     <div class="my-4" v-if="plant.synonyms && plant.synonyms.length">
-      <b>Also known as: </b>
+      <b>Auch bekannt als: </b>
       <span v-for="(syn, index) in plant.synonyms" :key="syn"
         >{{ syn
         }}<template v-if="index != plant.synonyms.length - 1"
@@ -51,11 +51,7 @@ export default {
   },
   computed: {
     imgUrl: function() {
-      return (
-        this.plant.thumbUrl ||
-        this.plant.imgUrl ||
-        "https://picsum.photos/75/75"
-      );
+      return this.plant.thumbUrl || this.plant.imgUrl || "/img/placeholder.png";
     }
   }
 };

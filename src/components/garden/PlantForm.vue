@@ -1,27 +1,27 @@
 <template>
   <b-form class="plantform" @submit.stop.prevent="onSubmit">
     <b-form-group
-      label="Display name"
-      invalid-feedback="Please pick a display name."
+      label="Anzeigename"
+      invalid-feedback="Bitte gib den geläufigsten Namen der Pflanze als Anzeigename an."
       :state="displayNameState"
     >
       <b-form-input
         v-model.trim="localPlant.displayName"
         type="text"
-        placeholder="Chaste tree"
+        placeholder="Mönchspfeffer"
         :state="displayNameState"
       />
     </b-form-group>
-    <b-form-group label="Synonyms">
+    <b-form-group label="Synonyme">
       <b-form-input
         v-model.trim="synonymStr"
         type="text"
-        placeholder="Chastetree, Monk's pepper"
+        placeholder="Keuschbaum, Keuschlamm"
       />
     </b-form-group>
     <b-form-group
-      label="Scientific name"
-      invalid-feedback="Please research the plant's scientific (latin) name."
+      label="Wissenschaftlicher Name"
+      invalid-feedback="Bitte finde den wissenschaftlichen Namen der Pflanze, z.B. bei Wikipedia."
       :state="sciNameState"
     >
       <b-form-input
@@ -32,8 +32,8 @@
       />
     </b-form-group>
     <b-form-group
-      label="Description"
-      invalid-feedback="Please give a short description."
+      label="Beschreibung"
+      invalid-feedback="Bitte gib eine Kurzbeschreibung über die Pflanze ab, was macht sie hauptsächlich aus?"
       :state="descriptionState"
     >
       <b-form-textarea
@@ -45,8 +45,8 @@
       />
     </b-form-group>
     <b-form-group
-      label="Image"
-      invalid-feedback="Please provide an image upload or camera photo"
+      label="Bild"
+      invalid-feedback="Bitte füge ein Bild aus deiner Gallerie oder via Kamera hinzu."
       :state="imageState"
     >
       <b-form-file
@@ -95,10 +95,12 @@
         </b-collapse>
       </div>
       <b-button variant="link" @click="addAction">
-        <BIconPlus variant="success" />Add Action
+        <BIconPlus variant="success" />Neue Aktion
       </b-button>
     </div>
-    <b-button type="submit" block variant="primary" class="mt-3">Save</b-button>
+    <b-button type="submit" block variant="primary" class="mt-3"
+      >Speichern</b-button
+    >
   </b-form>
 </template>
 <script>

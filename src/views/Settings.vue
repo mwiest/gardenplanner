@@ -1,3 +1,5 @@
 <template>
-  <h1>Settings</h1>
+  <b-container fluid>
+    <h2>Einstellungen</h2>
+  </b-container>
 </template>

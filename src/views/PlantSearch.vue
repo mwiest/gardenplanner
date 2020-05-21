@@ -1,12 +1,10 @@
 <template>
   <b-container fluid class="text-left">
     <h2>
-      <a @click="$router.go(-1)" class="backbutton mr-1"
-        ><b-icon-arrow-left
-      /></a>
-      Search plants
+      <a @click="$router.go(-1)" class="backbutton mr-1"><BIconArrowLeft /></a>
+      Suche nach Pflanzen
     </h2>
-    <plant-search-form @select="onSelect" :excludePlants="garden" />
+    <PlantSearchForm @select="onSelect" :excludePlants="garden" />
   </b-container>
 </template>
 

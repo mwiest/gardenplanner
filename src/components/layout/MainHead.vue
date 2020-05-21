@@ -1,9 +1,9 @@
 <template>
   <head class="mainhead">
     <img class="mainhead__logo" alt="Logo" src="@/assets/logo.png" />
-    <h1 class="mainhead__title">Gardenplanner</h1>
+    <h1 class="mainhead__title">Gartenplaner</h1>
     <b-button class="mainhead__logout" title="Logout" @click="$emit('onLogout')"
-      ><b-icon-box-arrow-right class="mainhead__logouticon"
+      ><BIconBoxArrowRight class="mainhead__logouticon"
     /></b-button>
   </head>
 </template>
